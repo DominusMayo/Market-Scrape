@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'articles/css/main.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap&subset=cyrillic-ext" rel="stylesheet">
+    <title>Популярные предметы</title>
+</head>
+<body>
+    <div class="header">
+        <p>Выбор предметов по цене:</p>
+        <form class="set_price" action="" method="GET">
+            <label>От:</label> 
+            <input class="min_value" name="min_value" type="number" value="{{ sort_form.min_value }}">
+     
+            <label>До:</label> 
+            <input class="max_value" name="max_value" type="number" value="{{ sort_form.max_value }}">
+
+            <input type="submit" value="Отправить">
+        </form>
+        <p id = "date"> С 12.12.2019 по {{ time_now }} </p>
+    </div>
+    <div class="container">
+        {% if sort %}
+                <p>Количество вещей: {{ sorted_items_price }}</p>
+                {% for name in sorted_items %}
+                <ul>
+                    <li>{{ name }}</li>
+                    </ul>
+                {% endfor %}
+        {% else %}
+                <p> Количество вещей: {{ count_items }} шт.</p>
+                <div class="box">
+                {% for item in name_item %}
+                    <div id = 'item'>
+                        <ul>
+                        <li>{{ item }}</li>
+                        </ul>
+                    </div>
+                {% endfor %}
+                </div>
+        {% endif %}
+</div>
+</body>
+</html>
