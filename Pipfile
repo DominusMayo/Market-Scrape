@@ -8,8 +8,9 @@ verify_ssl = true
 [packages]
 django = "*"
 requests = "*"
-datetetime = "*"
-datetime = "*"
+gunicorn = "*"
+whitenoise = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.8"
