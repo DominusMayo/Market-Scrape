@@ -4,7 +4,6 @@ from .models import Item
 from itertools import groupby
 from django.views import generic
 from .forms import PriceSelection
-from .forms import GetIcons
 import requests
 from datetime import datetime, date, time
 items =[]
