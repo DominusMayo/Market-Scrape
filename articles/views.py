@@ -21,8 +21,7 @@ def index(request):
     for i in popular_items:
         item = Item(name_item = i.split(',,')[0], price_item = i.split(',,')[1], url_icon = 'https://cdn.csgo.com/item/'+ i.split(',,')[0] +'/100.png')
         item.save()
-    name_item = Item.objects.values_list('name_item')
-    url_icons = Item.objects.values_list('url_icon')
+    name_item = Item.objects.all()
     count_items = len(name_item)
     date_now = datetime.now()
     
@@ -35,5 +34,5 @@ def index(request):
         data = {'name': name_item, 'count_items' : count_items, 'sort_items_form': sort_items_form, 'sorted_items': sorted_price, 'sort': sort, 'sorted_items_price': sorted_count_items,'time_now': date_now}
         return render(request, 'index.html', data)
     else:
-        data = {'name_item': name_item, 'count_items': count_items, 'url_icon': url_icons, 'sort_items_form': sort_items_form, 'time_now': date_now}
+        data = {'name_item': name_item, 'count_items': count_items, 'sort_items_form': sort_items_form, 'time_now': date_now}
         return render(request, 'index.html', data)
