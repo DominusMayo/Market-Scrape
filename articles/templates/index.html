@@ -37,7 +37,7 @@
                 {% for item in name_item %}
                     <div id = 'item'>
                         <ul>
-                        <li>{{ item }}</li>
+                        <li>{{ item }}  {% for url in url_icon %} <img src="{{ url }}" alt=""> {% endfor %}</li>
                         </ul>
                     </div>
                 {% endfor %}
