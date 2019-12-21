@@ -27,11 +27,23 @@
     <div class="container">
         {% if sort %}
                 <p>Количество вещей: {{ sorted_items_price }}</p>
-                {% for name in sorted_items %}
-                <ul>
-                    <li>{{ name }}</li>
-                    </ul>
+                <div class="row">
+                {% for item in sorted_items %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="container">
+                            <div class="card text-white bg-dark mb-3 border-primary" style="width: 10rem;">
+                                <img src="{{ item.url_icon }}" class="card-img-top" alt="">
+                                <div class="card-body"
+                                    <h5 class="card-title">{{ item.name_item }}</h5>
+                                    <p class="card-text">Цена: {{ item.price_item }} руб.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
+            </div>
         {% else %}
             <div class="row">
                 {% for item in items %}

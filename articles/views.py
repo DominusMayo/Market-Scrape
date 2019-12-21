@@ -28,7 +28,7 @@ def index(request):
         sort = True
         sorted_price = Item.objects.filter(price_item__range=[min_price, max_price])
         sorted_count_items = len(sorted_price)
-        data = {'name': name_item, 'count_items' : count_items, 'sort_items_form': sort_items_form,
+        data = {'name': name_item, 'sort_items_form': sort_items_form,
                 'sorted_items': sorted_price, 'sort': sort,
                 'sorted_items_price': sorted_count_items, 'time_now': date_now}
         return render(request, 'index.html', data)
