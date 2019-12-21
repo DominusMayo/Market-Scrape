@@ -1,7 +1,6 @@
 body{
     background-image: url(../img/bg.png);
     background-repeat: repeat;
-    color: white;
     padding: 0px;
     margin: 0px;
 }
@@ -25,13 +24,12 @@ body{
     font-size: 25pt;
     font-family: 'Oswald', sans-serif;
 }
-
-ul {
-    padding: 0px;
-    margin: 10px;
+.set_price label{
+    color: white;
 }
-
-ul li {
-    padding: 0px;
-    margin: 10px;
+.choice_price{
+    color: white;
+}
+.card{
+    border: red;
 }
