@@ -22,11 +22,10 @@
 
             <input type="submit" value="Отправить">
         </form>
-        <p id = "date"> С 12.12.2019 по {{ time_now }} </p>
+        <p id = "date"> С 19.01.2020 по {{ time_now }} </p>
     </div>
     <div class="container">
         {% if sort %}
-                <p>Количество вещей: {{ sorted_items_price }}</p>
                 <div class="row">
                 {% for item in sorted_items %}
                 <div class="row">
@@ -35,8 +34,8 @@
                             <div class="card text-white bg-dark mb-3 border-primary" style="width: 10rem;">
                                 <img src="{{ item.url_icon }}" class="card-img-top" alt="">
                                 <div class="card-body"
-                                    <h5 class="card-title">{{ item.name_item }}</h5>
-                                    <p class="card-text">Цена: {{ item.price_item }} руб.</p>
+                                    <h5 class="card-title">{{ item.name }}</h5>
+                                    <p class="card-text">Цена: {{ item.price }} руб. </p>
                                 </div>
                             </div>
                         </div>
@@ -46,15 +45,15 @@
             </div>
         {% else %}
             <div class="row">
-                {% for item in items %}
+                {% for item in counts_item %}
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="container">
                             <div class="card text-white bg-dark mb-3 border-primary" style="width: 10rem;">
                                 <img src="{{ item.url_icon }}" class="card-img-top" alt="">
                                 <div class="card-body"
-                                    <h5 class="card-title">{{ item.name_item }}</h5>
-                                    <p class="card-text">Цена: {{ item.price_item }} руб.</p>
+                                    <h5 class="card-title">{{ item.name }} Количество проданных: {{ item.sell_count }} шт.</h5>
+                                    <p class="card-text">Цена: {{ item.price }} руб.</p>
                                 </div>
                             </div>
                         </div>
@@ -64,8 +63,5 @@
             </div>
         {% endif %}
     </div>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

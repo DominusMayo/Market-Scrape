@@ -12,6 +12,8 @@ gunicorn = "*"
 whitenoise = "*"
 dj-database-url = "*"
 psycopg2 = "*"
+pylint = "*"
+urllib3 = "*"
 
 [requires]
 python_version = "3.8"
