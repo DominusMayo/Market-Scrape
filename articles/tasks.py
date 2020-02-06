@@ -2,8 +2,8 @@ from blog.celery import app
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import requests
-from .models import Item
-from .forms import PriceSelection
+from articles.models import Item
+from articles.forms import PriceSelection
 from django.db.models import Count
 items = []
 response_buy = requests.get('https://market.csgo.com/history/json/')
