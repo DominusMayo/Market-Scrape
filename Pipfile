@@ -9,7 +9,6 @@ verify_ssl = true
 django = "*"
 requests = "*"
 gunicorn = "*"
-whitenoise = "*"
 dj-database-url = "*"
 psycopg2 = "*"
 pylint = "*"
@@ -17,6 +16,7 @@ urllib3 = "*"
 celery = "*"
 redis = "*"
 importlib-metadata = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.8"
