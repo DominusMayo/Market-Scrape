@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block title %}Поиск по предметам{% endblock %}
+{% block header %}
+<p class="choice_price">Выбор предметов по цене:</p>
+        <form class="set_price" action="/search/" method="GET">
+            <label>От:</label> 
+            <input class="min_value" name="min_value" type="number" value="{{ sort_form.min_value }}">
+     
+            <label>До:</label> 
+            <input class="max_value" name="max_value" type="number" value="{{ sort_form.max_value }}">
+    
+            <input type="submit" value="Отправить">
+        </form>
+        <p id = "date"> С 19.01.2020 по {{ time_now }} </p>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        {% for item in sorted_items %}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="container">
+                        <div class="card text-white bg-dark mb-3 border-primary" style="width: 10rem;">
+                            <img src="{{ item.url_icon }}" class="card-img-top" alt="">
+                            <div class="card-body"
+                                <h5 class="card-title"><h5 class="card-title">{{ item.name }} Количество проданных: {{ item.sell_count }} шт.</h5></h5>
+                                <p class="card-text">Цена: {{ item.price }} руб. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

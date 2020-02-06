@@ -14,6 +14,8 @@ dj-database-url = "*"
 psycopg2 = "*"
 pylint = "*"
 urllib3 = "*"
+celery = "*"
+redis = "*"
 
 [requires]
 python_version = "3.8"
