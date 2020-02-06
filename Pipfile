@@ -16,6 +16,7 @@ pylint = "*"
 urllib3 = "*"
 celery = "*"
 redis = "*"
+importlib-metadata = "*"
 
 [requires]
 python_version = "3.8"
