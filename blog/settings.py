@@ -134,8 +134,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+
 
 # REDIS CONFIG
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://redistogo:b83dc0ea6b20b708db3629414e0c7313@hammerjaw.redistogo.com:11836/')
