@@ -2,12 +2,8 @@ from celery import Celery
 import os
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog.settings')
-app = Celery()
+app = Celery('blog')
 
-class Config:
-    enable_utc = True
-    timezone = 'Europe/Moscow'
-
-app.config_from_object(Config)
-
+app.config_from_object('django.conf:settings', namespace = 'CELERY')
+#load task module
 app.autodiscover_tasks()

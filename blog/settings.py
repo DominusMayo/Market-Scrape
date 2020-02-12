@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO SECRET KEY', '=*4wqkpy=$!n!3jv&x(ckobo+qoxw-8)!goc=)6ktt9gq%&s2=')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', False ),)
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True ),)
 
 ALLOWED_HOSTS = ['*']
 
@@ -79,10 +78,15 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd2h0nr6htpvo6s',
+        'USER': 'eakcbstjknepqh',
+        'PASSWORD': 'df9aaa6fe35380c5272a9468cd903202b2f22622074129d5250ed99d414132fd',
+        'HOST': 'ec2-174-129-33-19.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -129,21 +133,29 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
-
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 # REDIS CONFIG
-REDIS_URL = os.environ.get('REDIS_URL', 'redis://emarlo:03cc104ceabc90010a88b926df09799d@85.25.11.9:3103/')
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://redistogo:b83dc0ea6b20b708db3629414e0c7313@hammerjaw.redistogo.com:11836/')
 BROKER_CONNECTION_MAX_RETRIES = os.environ.get('BROKER_CONNECTION_MAX_RETRIES', None)
-BROKER_POOL_LIMIT = os.environ.get('BROKER_POOL_LIMIT', None)
+BROKER_POOL_LIMIT = os.environ.get('BROKER_POOL_LIMIT', 2)
 
 # CELERY CONFIG
+from celery.schedules import crontab
+os.environ.setdefault('FORKED_BY_MULTIPROCESSING', '1')
 CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', REDIS_URL)
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', REDIS_URL)
-CELERY_REDIS_MAX_CONNECTIONS = os.environ.get('CELERY_REDIS_MAX_CONNECTIONS', 5)
-CELERYD_CONCURRENCY = os.environ.get('CELERYD_CONCURRENCY', 1)
+CELERY_REDIS_MAX_CONNECTIONS = os.environ.get('CELERY_REDIS_MAX_CONNECTIONS', 3)
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_BEAT_SCHEDULE = {    
+        'adding_items_on_db': {
+        'task': 'articles.tasks.adding_items_on_db',
+        'schedule': crontab(minute='*/5'),
+    },
+}

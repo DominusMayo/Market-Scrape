@@ -13,10 +13,11 @@ dj-database-url = "*"
 psycopg2 = "*"
 pylint = "*"
 urllib3 = "*"
-celery = "*"
 redis = "*"
 importlib-metadata = "*"
 django-heroku = "*"
+eventlet = "*"
+celery = "*"
 
 [requires]
 python_version = "3.8"

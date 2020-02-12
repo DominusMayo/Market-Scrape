@@ -33,3 +33,7 @@ body{
 .card{
     border: red;
 }
+
+.pagination  > li > a{
+    background-color: black;
+}
