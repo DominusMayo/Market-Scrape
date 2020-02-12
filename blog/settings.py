@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO SECRET KEY', '=*4wqkpy=$!n!3jv&x(ckobo+qoxw-8)!goc=)6ktt9gq%&s2=')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True ),)
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', False ),)
 
 ALLOWED_HOSTS = ['*']
 
@@ -133,10 +134,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 # REDIS CONFIG
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://redistogo:b83dc0ea6b20b708db3629414e0c7313@hammerjaw.redistogo.com:11836/')
