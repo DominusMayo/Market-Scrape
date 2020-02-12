@@ -11,7 +11,7 @@ def index(request):
     sort_items_form = PriceSelection()
     counts_item = Item.objects.values('name', 'price', 'url_icon').annotate(sell_count=Count('name')).distinct()
     date_now = datetime.now()
-    paginator = Paginator(counts_item, 25)
+    paginator = Paginator(counts_item, 50)
     page_number = request.GET.get("page")
     try:
         page_obj = paginator.get_page(page_number)

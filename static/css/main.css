@@ -37,3 +37,8 @@ body{
 .pagination  > li > a{
     background-color: black;
 }
+
+.num_page {
+    margin: 5px;
+    color: red;
+}

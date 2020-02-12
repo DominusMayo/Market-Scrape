@@ -46,7 +46,6 @@
             {% endfor %}
         </div>
         {% block paginator %}
-        <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
              {% if number_page.has_previous %}
               <li class="page-item enabled">
@@ -57,9 +56,7 @@
                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Предыдущая</a>
               </li>
               {% endif %}
-                {% for n in number_page.paginator.page_range %}
-                    <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
-                {% endfor %}
+                   <p class = "num_page">{{ number_page.number }} из {{ number_page.paginator.num_pages }}</p>
               {% if number_page.has_next %}
               <li class="page-item enabled">  
                 <a class="page-link" href="?page={{number_page.next_page_number}}">Следующая</a>
@@ -70,7 +67,6 @@
               </li>
               {% endif %}
             </ul>
-          </nav>
           {% endblock %}
         {% endblock %}
 </body>
