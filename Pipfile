@@ -18,6 +18,7 @@ importlib-metadata = "*"
 django-heroku = "*"
 eventlet = "*"
 celery = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"
